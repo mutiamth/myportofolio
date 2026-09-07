@@ -6,24 +6,28 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 75px;
 }
 
 :root {
-    --ink: #2d2a26;
-    --paper: #fff8f1;
-    --accent: #8fa89d;
-    --accent-dark: #61796e;
-    --terracotta: #d47a63;
-    --line: #e8ddd1;
-    --text-muted: #6e665e;
-    --white: #ffffff;
+    --ink: #292820;
+    --paper: #f5f0e7;
+    --accent: #65754b;
+    --accent-dark: #3f4d30;
+    --terracotta: #c45f43;
+    --line: #d8cdbd;
+    --text-muted: #625d54;
+    --white: #fffdf8;
     --radius: 8px;
 }
 
 body {
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: var(--ink);
-    background-color: var(--paper);
+    background-image: url("/static/img/woodTexture.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
     line-height: 1.6;
 }
 
@@ -32,9 +36,17 @@ h1, .brand {
 }
 
 .container {
-    max-width: 960px;
+    max-width: 860px;
     margin: 0 auto;
     padding: 0 1.5rem;
+}
+
+.page {
+    max-width: 1000px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: var(--paper);
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.25);
 }
 
 .site-header {
@@ -44,7 +56,7 @@ h1, .brand {
 
     border-bottom: 1px solid var(--line);
 
-    background-color: rgba(255, 248, 241, 0.9);
+    background-color: rgba(245, 240, 231, 0.92);
     backdrop-filter: blur(10px);
 }
 
@@ -206,7 +218,319 @@ h1, .brand {
     border-top: 1px solid var(--line);
 }
 
+/* =========================
+   Skills / Projects / Education
+   ========================= */
+
+.content-section {
+    padding: 5.5rem 0;
+    border-top: 1px solid var(--line);
+}
+
+.section-title-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    margin-bottom: 3rem;
+}
+
+.section-number {
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--terracotta);
+    font-weight: 700;
+}
+
+.section-kicker {
+    margin-bottom: 0.4rem;
+    color: var(--accent-dark);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.section-title-row h2 {
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+}
+
+
+/* =========================
+   Skills
+   ========================= */
+
+.skills-section {
+    background-color: var(--paper);
+}
+
+.skills-list {
+    border-top: 2px solid var(--ink);
+}
+
+.skill-row {
+    display: grid;
+    grid-template-columns: 70px 230px 1fr;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 90px;
+    border-bottom: 1px solid var(--line);
+    transition: padding-left 0.25s ease,
+                background-color 0.25s ease;
+}
+
+.skill-row:hover {
+    padding-left: 1rem;
+    background-color: rgba(101, 117, 75, 0.08);
+}
+
+.skill-index {
+    color: var(--terracotta);
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.skill-row h3 {
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: 1.1rem;
+}
+
+.skill-row p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.learning-row {
+    background-color: rgba(101, 117, 75, 0.12);
+}
+
+
+/* =========================
+   Projects
+   ========================= */
+
+.projects-section {
+    background-color: #e9dfd1;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 1rem;
+}
+
+.project-card {
+    position: relative;
+    min-height: 310px;
+    padding: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--ink);
+    background-color: var(--white);
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 7px 7px 0 var(--accent-dark);
+}
+
+.project-featured {
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--accent-dark);
+    color: var(--white);
+}
+
+.project-secondary {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-placeholder {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    border-style: dashed;
+    background-color: transparent;
+}
+
+.project-number {
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--terracotta);
+    margin-bottom: 2rem;
+}
+
+.project-featured .project-number {
+    color: #e3a08b;
+}
+
+.project-info {
+    max-width: 520px;
+}
+
+.project-type {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid currentColor;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.project-card h3 {
+    margin-bottom: 0.75rem;
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.1;
+}
+
+.project-card p {
+    max-width: 430px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.project-featured p {
+    color: #e7e1d8;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+}
+
+.project-tags span {
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    background-color: var(--paper);
+    color: var(--ink);
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.project-featured .project-tags span {
+    background-color: #536340;
+    color: var(--white);
+}
+
+.project-decoration {
+    position: absolute;
+    right: 2rem;
+    bottom: 1.5rem;
+    font-family: Georgia, serif;
+    font-size: 5rem;
+    line-height: 1;
+    opacity: 0.18;
+}
+
+.project-featured .project-decoration {
+    color: var(--paper);
+}
+
+.plus-mark {
+    position: absolute;
+    right: 2rem;
+    bottom: 1.5rem;
+    font-family: Georgia, serif;
+    font-size: 4rem;
+    color: var(--accent-dark);
+    opacity: 0.4;
+}
+
+
+/* =========================
+   Education
+   ========================= */
+
+.education-section {
+    background-color: var(--paper);
+}
+
+.education-timeline {
+    position: relative;
+    max-width: 850px;
+    margin-left: 90px;
+    border-left: 2px solid var(--accent);
+}
+
+.education-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 1.75rem 0 1.75rem 2rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.education-dot {
+    position: absolute;
+    top: 2rem;
+    left: -7px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--terracotta);
+    border: 2px solid var(--paper);
+}
+
+.education-year {
+    color: var(--terracotta);
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.education-content h3 {
+    margin-bottom: 0.3rem;
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: 1.3rem;
+}
+
+.education-content p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* =========================
+   Responsive — Tablet (<=900px)
+   ========================= */
+
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: "identity" "photo" "details";
+    }
+    .hero-photo { max-width: 280px; margin: 0 auto; }
+
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-featured { grid-row: auto; }
+
+    .education-timeline { margin-left: 40px; }
+    .education-item { grid-template-columns: 140px 1fr; gap: 1rem; }
+}
+
+/* =========================
+   Responsive — Mobile (<=600px)
+   ========================= */
+
 @media (max-width: 600px) {
+    body {
+        background-attachment: scroll;
+    }
+
     .hero {
         padding: 3rem 0 4rem;
     }
@@ -225,5 +549,65 @@ h1, .brand {
 
     .social-links {
         justify-content: flex-start;
+    }
+
+    /* Sections */
+
+    .content-section {
+        padding: 4rem 0;
+    }
+
+    .section-title-row {
+        grid-template-columns: 55px 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-number {
+        font-size: 2.3rem;
+    }
+
+    /* Skills */
+
+    .skill-row {
+        grid-template-columns: 40px 1fr;
+        gap: 0.5rem 1rem;
+        padding: 1.25rem 0;
+    }
+
+    .skill-row p {
+        grid-column: 2;
+    }
+
+    /* Projects */
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-featured {
+        grid-row: auto;
+        min-height: 320px;
+    }
+
+    .project-secondary,
+    .project-placeholder {
+        min-height: 260px;
+    }
+
+    /* Education */
+
+    .education-timeline {
+        margin-left: 1rem;
+    }
+
+    .education-item {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+        padding-left: 1.5rem;
+    }
+
+    .education-dot {
+        left: -7px;
     }
 }

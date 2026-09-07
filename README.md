@@ -1,7 +1,7 @@
-Nama : Mutia Muthmainnah
+### Tugas 1
 
-NPM : 2506625230
+1. Ya, saya menggunakan beberapa elemen semantik HTML5 seperti `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, dan `<footer>`. Elemen-elemen tersebut membantu saya membagi halaman berdasarkan fungsi dan jenis kontennya. Sebagai contoh, `<section>` digunakan untuk memisahkan bagian Profile, Skills, Projects, dan Education, sedangkan `<article>` digunakan untuk setiap item Skills, Projects, dan Education. Dengan struktur tersebut, kode HTML menjadi lebih terorganisir, mudah dibaca, dan lebih mudah dikembangkan ketika ingin menambahkan konten baru pada static web.
 
-Kelas : PBP D
+2. Tantangan utama saya saat membuat website responsive adalah menyesuaikan tata letak yang awalnya menggunakan beberapa kolom pada desktop agar tetap nyaman dibaca pada layar mobile. Saya mengevaluasi elemen berdasarkan prioritas informasi dan ukuran layar. Pada bagian Hero, layout diubah dari dua kolom menjadi satu kolom agar identitas, foto, dan informasi dapat ditampilkan secara vertikal. Pada bagian Skills, jumlah dan posisi kolom juga disederhanakan agar teks tidak terlalu sempit. Pada bagian Projects, kartu project juga diubah menjadi satu kolom pada mobile. Selain itu, saya menyesuaikan ukuran judul, jarak antar elemen, dan posisi timeline Education agar tetap rapi pada layar yang lebih kecil.
 
-Tutorial Git Branching
+3. Batasan yang saya rasakan pada static web adalah seluruh informasi masih ditulis secara langsung di dalam HTML, sehingga setiap perubahan atau penambahan data harus dilakukan secara manual pada kode. Website juga belum dapat menampilkan konten yang berubah secara otomatis berdasarkan data atau interaksi pengguna yang lebih kompleks. Pada iterasi selanjutnya, saya ingin menambahkan fungsionalitas dinamis menggunakan Django, misalnya agar data Projects dapat disimpan dan ditampilkan dari database. Dengan demikian, saya dapat menambahkan atau mengubah project tanpa harus mengubah struktur HTML secara langsung.
