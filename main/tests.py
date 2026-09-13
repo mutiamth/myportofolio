@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 from main.models import Experience
+from main.models import Education
 
 
 class MainTest(TestCase):
@@ -19,7 +20,10 @@ class MainTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "index.html")
         self.assertNotContains(response, self.experience.title)
-        self.assertContains(response, f'href="{reverse("main:show_experience")}"')
+        self.assertContains(
+            response,
+            f'href="{reverse("main:show_experience")}"'
+        )
 
     def test_nonexistent_page_returns_404(self):
         response = self.client.get("/halaman-yang-tidak-ada/")
@@ -39,14 +43,20 @@ class MainTest(TestCase):
         self.assertContains(response, self.experience.title)
         self.assertContains(response, self.experience.description)
         self.assertContains(response, "Part-Time")
-        self.assertContains(response, "Sedang berlangsung")
-        self.assertContains(response, f'href="{reverse("main:show_main")}"')
+        self.assertContains(response, "Currently")
+        self.assertContains(
+            response,
+            f'href="{reverse("main:show_main")}"'
+        )
 
     def test_empty_experience_page(self):
         Experience.objects.all().delete()
         response = self.client.get(reverse("main:show_experience"))
 
-        self.assertContains(response, "Belum ada pengalaman yang ditambahkan.")
+        self.assertContains(
+            response,
+            "No experience has been added yet."
+        )
 
     def test_completed_experience(self):
         self.experience.ended_at = timezone.now()
@@ -54,5 +64,36 @@ class MainTest(TestCase):
         response = self.client.get(reverse("main:show_experience"))
 
         self.assertFalse(self.experience.is_ongoing)
-        self.assertContains(response, "Selesai")
-        self.assertNotContains(response, "Sedang berlangsung")
+        self.assertContains(response, "Completed")
+        self.assertNotContains(response, "Currently")
+
+
+class EducationViewTest(TestCase):
+
+    def test_education_page_uses_correct_template(self):
+        response = self.client.get(reverse("main:show_education"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "education.html")
+
+    def test_education_data_appears(self):
+        Education.objects.create(
+            institution="Universitas Indonesia",
+            degree="S1 Ilmu Komputer",
+            start_year=2025,
+            end_year=None,
+        )
+
+        response = self.client.get(reverse("main:show_education"))
+
+        self.assertContains(response, "Universitas Indonesia")
+        self.assertContains(response, "S1 Ilmu Komputer")
+        self.assertContains(response, "2025")
+
+    def test_education_empty_state(self):
+        response = self.client.get(reverse("main:show_education"))
+
+        self.assertContains(
+            response,
+            "No education history has been added yet."
+        )

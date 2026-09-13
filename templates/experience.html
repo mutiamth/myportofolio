@@ -17,38 +17,53 @@
             <nav>
                 <a href="{% url 'main:show_main' %}">Profile</a>
                 <a href="{% url 'main:show_experience' %}">Experience</a>
+                <a href="{% url 'main:show_education' %}">Education</a>
             </nav>
         </div>
     </header>
 <main>
-    <section class="experience-section" id="experience">
+    <section class="content-section experience-page-section">
         <div class="container">
-            <p class="section-kicker">Perjalanan saya sejauh ini</p>
-            <h1>Experience</h1>
+
+            <div class="section-title-row">
+                <span class="section-number">02</span>
+                <div>
+                    <p class="section-kicker">My Journey So Far</p>
+                    <h1>Experience</h1>
+                </div>
+            </div>
 
             <div class="experience-grid">
                 {% for experience in experience_list %}
                     <article class="experience-card">
+
                         <span class="experience-category">
                             {{ experience.get_category_display }}
                         </span>
+
                         <h2>{{ experience.title }}</h2>
+
                         <p class="experience-description">
                             {{ experience.description }}
                         </p>
 
-                        {% if experience.is_ongoing %}
-                            <p class="experience-status">Sedang berlangsung</p>
-                        {% else %}
-                            <p class="experience-status">Selesai</p>
-                        {% endif %}
+                        <p class="experience-status">
+                            {% if experience.is_ongoing %}
+                                Currently
+                            {% else %}
+                                Completed
+                            {% endif %}
+                        </p>
+
                     </article>
+
                 {% empty %}
                     <p class="empty-state">
-                        Belum ada pengalaman yang ditambahkan.
+                        No experience has been added yet.
                     </p>
                 {% endfor %}
             </div>
+
         </div>
     </section>
 </main>
