@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main>
+    <section class="content-section education-page-section">
+        <div class="container">
+
+            <div class="section-title-row">
+                <span class="section-number">05</span>
+                <div>
+                    <p class="section-kicker">Things I Have Built</p>
+                    <h1>Projects</h1>
+                </div>
+            </div>
+
+            <a href="{% url 'main:create_project' %}" class="add-button">
+                + Add Project
+            </a>
+
+            <form method="get"
+                  action="{% url 'main:show_projects' %}"
+                  class="project-search">
+
+                <input type="search"
+                       name="title"
+                       value="{{ title_query }}"
+                       placeholder="Search by project name"
+                       class="project-search__input"
+                       aria-label="Search by project name">
+
+                <button type="submit">Search</button>
+
+            </form>
+
+            <div class="experience-grid">
+                {% for project in project_list %}
+                    <article class="experience-card">
+
+                        {% if project.project_image_url %}
+                            <img
+                                src="{{ project.project_image_url }}"
+                                alt="{{ project.title }}"
+                                class="project-image"
+                            >
+                        {% endif %}
+
+                        <span class="experience-category">
+                            Project
+                        </span>
+
+                        <h2>{{ project.title }}</h2>
+
+                        <p class="experience-description">
+                            {{ project.description }}
+                        </p>
+
+                        <p class="experience-status">
+                            {{ project.tech_stack }}
+                        </p>
+
+                        <div class="project-actions">
+
+                            {% if project.project_url %}
+                                <a href="{{ project.project_url }}" target="_blank">
+                                    View Project
+                                </a>
+                            {% endif %}
+
+                            <button type="button"
+                                    onclick="document.getElementById('delete-modal-{{ project.id }}').showModal()">
+                                Delete
+                            </button>
+
+                        </div>
+
+                        {% include 'components/project_delete_modal.html' %}
+
+                    </article>
+
+                {% empty %}
+                    <p class="empty-state">
+                        No projects have been added yet.
+                    </p>
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main>
+    <section class="content-section education-page-section">
+        <div class="container">
+
+            <div class="section-title-row">
+                <span class="section-number">05</span>
+                <div>
+                    <p class="section-kicker">Add New Project</p>
+                    <h1>Add Project</h1>
+                </div>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.errors %}
+                            <div class="form-error">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="form-actions">
+                    <button type="submit">Add Project</button>
+
+                    <a href="{% url 'main:show_projects' %}">
+                        Cancel
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+</main>
+
+{% endblock content %}

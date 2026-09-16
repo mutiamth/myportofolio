@@ -1,0 +1,28 @@
+<dialog id="delete-modal-{{ project.id }}" class="delete-modal">
+    <div class="delete-modal-content">
+
+        <h2>Delete Project?</h2>
+
+        <p>
+            Are you sure you want to delete
+            <strong>{{ project.title }}</strong>?
+        </p>
+
+        <form method="POST"
+              action="{% url 'main:delete_project' project.id %}">
+            {% csrf_token %}
+
+            <div class="modal-actions">
+                <button type="submit" class="delete-button">
+                    Delete
+                </button>
+
+                <button type="button"
+                        onclick="document.getElementById('delete-modal-{{ project.id }}').close()">
+                    Cancel
+                </button>
+            </div>
+        </form>
+
+    </div>
+</dialog>

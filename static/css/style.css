@@ -924,3 +924,386 @@ h3,
         transition-duration: 0.01ms !important;
     }
 }
+
+/* Education Form */
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--ink);
+    background-color: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.form-error {
+    margin-top: 0.4rem;
+    color: var(--terracotta);
+    font-size: 0.85rem;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.form-actions button,
+.form-actions a,
+.add-button {
+    display: inline-block;
+    padding: 0.7rem 1.1rem;
+    border: 1px solid var(--accent-dark);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-actions button,
+.add-button {
+    color: var(--white);
+    background-color: var(--accent-dark);
+}
+
+.form-actions button:hover,
+.add-button:hover {
+    background-color: var(--accent);
+}
+
+.form-actions a {
+    color: var(--ink);
+    background-color: transparent;
+}
+
+.form-actions a:hover {
+    background-color: var(--line);
+}
+
+/* =========================
+   PROJECT PAGE
+   ========================= */
+
+.project-image {
+    display: block;
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    margin-bottom: 1.25rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+}
+
+.project-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.project-actions a,
+.project-actions button {
+    display: inline-block;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--accent-dark);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.project-actions a {
+    color: var(--white);
+    background-color: var(--accent-dark);
+}
+
+.project-actions a:hover {
+    background-color: var(--accent);
+}
+
+.project-actions button {
+    color: var(--terracotta);
+    background-color: transparent;
+}
+
+.project-actions button:hover {
+    color: var(--white);
+    background-color: var(--terracotta);
+}
+
+
+/* =========================
+   DELETE MODAL
+   ========================= */
+
+.delete-modal {
+    width: min(420px, calc(100% - 2rem));
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background-color: rgba(245, 240, 231, 0.96);
+    color: var(--ink);
+    box-shadow: 0 20px 50px rgba(41, 40, 32, 0.2);
+}
+
+.delete-modal::backdrop {
+    background-color: rgba(41, 40, 32, 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.delete-modal-content {
+    padding: 1.75rem;
+}
+
+.delete-modal-content h2 {
+    margin-bottom: 0.6rem;
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: 1.4rem;
+}
+
+.delete-modal-content p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.delete-modal-content strong {
+    color: var(--ink);
+}
+
+.modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 1.5rem;
+}
+
+.modal-actions button {
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--accent-dark);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.modal-actions .delete-button {
+    color: var(--white);
+    background-color: var(--terracotta);
+    border-color: var(--terracotta);
+}
+
+.modal-actions .delete-button:hover {
+    background-color: #a94d36;
+}
+
+.modal-actions button[type="button"] {
+    color: var(--ink);
+    background-color: transparent;
+}
+
+.modal-actions button[type="button"]:hover {
+    background-color: var(--line);
+}
+
+
+/* =========================
+   PROJECT PAGE RESPONSIVE
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .project-image {
+        max-height: 180px;
+    }
+
+    .project-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .project-actions a,
+    .project-actions button {
+        text-align: center;
+        width: 100%;
+    }
+
+    .modal-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .modal-actions button {
+        width: 100%;
+    }
+}
+
+
+/* =========================
+DARI SINI YANG TADI DITAMBAH 
+
+   COVER (LANDING) SECTIONS
+   ========================= */
+
+.cover-light {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--paper);
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+    will-change: opacity, transform;
+}
+
+.cover-kicker {
+    font-family: "Inter", -apple-system, sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin: 0 0 0.75rem;
+}
+
+.cover-title {
+    font-family: "Bodoni Moda", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(3rem, 12vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0;
+    width: 100%;
+}
+
+.cover-tagline {
+    font-family: "Inter", -apple-system, sans-serif;
+    max-width: 320px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 1.25rem auto 0;
+}
+
+.cover-social {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+}
+
+.cover-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--accent-dark);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.65rem;
+    font-weight: 600;
+    font-family: "Inter", -apple-system, sans-serif;
+    text-transform: uppercase;
+    transition:
+        background-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.cover-social a:hover {
+    background-color: var(--terracotta);
+    transform: translateY(-3px);
+}
+
+.cover-dark {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #0e0d0a;
+}
+
+.cover-dark-bg {
+    position: absolute;
+    inset: -10% -5%;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(90, 70, 50, 0.25), transparent 55%),
+        linear-gradient(180deg, #14120e, #050403);
+    will-change: transform;
+}
+
+.cover-dark-text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: var(--white);
+    transform: translateY(-50%);
+    will-change: opacity, transform;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+    opacity: 0;
+}
+
+.cover-dark-text p {
+    font-family: "Inter", -apple-system, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #a8927e;
+    margin: 0 0 0.85rem;
+}
+
+.cover-dark-text h2 {
+    font-family: "Bodoni Moda", Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(2.5rem, 9vw, 6.5rem);
+    line-height: 0.88;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .cover-tagline {
+        font-size: 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cover-light,
+    .cover-dark-text,
+    .cover-dark-bg {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}
