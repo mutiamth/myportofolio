@@ -41,6 +41,19 @@
                             {% endif %}
                         </p>
 
+                        <div class="project-actions">
+                            <a href="{% url 'main:update_education' education.id %}">
+                                Edit
+                            </a>
+
+                            <form method="POST"
+                                action="{% url 'main:delete_education' education.id %}">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
                     </article>
 
                 {% empty %}

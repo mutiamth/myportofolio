@@ -16,3 +16,36 @@
 
 3. **Apa perbedaan `makemigrations` dan `migrate`? Berikan contohnya.**  
    `makemigrations` digunakan untuk membuat file migration berdasarkan perubahan pada model Django. Sementara itu, `migrate` digunakan untuk menerapkan migration tersebut ke database sehingga struktur database benar-benar diperbarui. Contohnya, ketika menambahkan model `Education` ke `main/models.py`, perintah `python manage.py makemigrations` akan membuat file migration seperti `0002_education.py`. Setelah itu, `python manage.py migrate` menerapkan perubahan tersebut sehingga tabel `Education` dibuat di database.
+
+### Tugas 3
+
+1. **Mengapa menggunakan `ModelForm` dan mengapa perlu `{% csrf_token %}`?**  
+   `ModelForm` digunakan karena dapat membuat form berdasarkan model Django yang sudah ada, sehingga field pada form dapat disesuaikan dengan field yang terdapat pada model. Dengan menggunakan `ModelForm`, kita tidak perlu membuat setiap field form HTML secara manual dan proses validasi data juga dapat dibantu oleh Django. Hal ini membuat proses pembuatan dan pengelolaan form menjadi lebih sederhana.
+
+   `{% csrf_token %}` diperlukan untuk memberikan perlindungan terhadap serangan Cross-Site Request Forgery (CSRF). Token tersebut digunakan Django untuk memastikan bahwa request POST yang dikirim melalui form berasal dari halaman yang memang dibuat oleh aplikasi kita.
+
+2. **Mengapa JSON lebih disukai dibandingkan XML dalam pengembangan aplikasi web modern?**  
+   JSON lebih disukai karena formatnya lebih sederhana dan lebih ringkas dibandingkan XML. Struktur JSON juga lebih mudah dibaca dan digunakan dalam aplikasi web karena bentuk datanya dekat dengan struktur data yang digunakan dalam pemrograman, seperti object dan array.
+
+   Selain itu, JSON memiliki ukuran data yang cenderung lebih kecil sehingga lebih praktis digunakan untuk pertukaran data antara server dan client. JSON juga banyak digunakan dalam API modern sehingga lebih mudah diintegrasikan dengan berbagai aplikasi web.
+
+3. **Bagaimana alur view mengembalikan data portofolio dalam bentuk JSON dan mengapa perlu serialization?**  
+   Ketika view dipanggil untuk mengembalikan data portofolio dalam bentuk JSON, view terlebih dahulu mengambil data dari model Django menggunakan query ke database. Data dari model tersebut kemudian diproses menggunakan `serializers.serialize()` untuk mengubah objek Django menjadi format JSON.
+
+   Setelah proses serialization selesai, data JSON dikembalikan oleh view menggunakan `HttpResponse` dengan `content_type = "application/json"`. Serialization diperlukan karena objek model Django tidak dapat langsung dikirim sebagai JSON. Proses ini mengubah data dan informasi dari objek Django menjadi format yang dapat dibaca dan digunakan oleh client.
+
+### AI Disclosure
+Dalam pengerjaan tugas ini, saya menggunakan ChatGPT dan Claude sebagai alat bantu pembelajaran, pengembangan, dan debugging.
+
+**ChatGPT** digunakan untuk:
+- Membantu memahami konsep Django ModelForm, CRUD, URL routing, JSON data delivery, serialization, dan deserialization.
+- Membantu mengimplementasikan dan melakukan debugging pada fitur Create, Update, Delete, serta JSON Data Delivery untuk bagian Education.
+- Membantu memeriksa struktur kode dan alur implementasi agar sesuai dengan requirement tugas.
+
+**ChatGPT dan Claude** juga digunakan sebagai bantuan dalam pengembangan tampilan website, terutama untuk:
+- Membantu menyusun dan memperbaiki CSS, termasuk layout, card, button, responsive design, dan elemen visual lainnya.
+- Membantu melakukan debugging terhadap tampilan CSS ketika hasil yang ditampilkan belum sesuai.
+
+Strategi prompting yang digunakan berupa pemberian konteks proyek, potongan kode, screenshot hasil implementasi, serta pertanyaan spesifik mengenai error atau perubahan yang ingin dilakukan. Output dari AI tidak digunakan secara langsung tanpa pemeriksaan. Saya menyesuaikan kode yang diberikan dengan struktur project dan melakukan pengujian secara manual.
+
+Implementasi akhir diuji dengan menjalankan aplikasi menggunakan `python manage.py runserver` serta menguji fitur Create, Read, Update, Delete, dan JSON Data Delivery pada bagian Education. Saya juga melakukan perubahan dan penyesuaian manual terhadap kode dan tampilan sesuai kebutuhan project.

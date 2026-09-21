@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from main.models import Experience, Education, Project
 from main.forms import EducationForm, ProjectForm
@@ -26,11 +26,34 @@ def show_experience(request):
     return render(request, "experience.html", context)
 
 def show_education(request):
+    json_response = get_education_json(request)
+
+    education = serializers.deserialize(
+        "json",
+        json_response.content.decode("utf-8"),
+    )
+
+    education = [item.object for item in education]
+
     context = {
         "name": "Mutia Muthmainnah",
-        "education_list": Education.objects.all(),
+        "education_list": education,
     }
+    
     return render(request, "education.html", context)
+
+def get_education_json(request):
+    education = Education.objects.all()
+
+    education_json = serializers.serialize(
+        "json",
+        education,
+    )
+
+    return HttpResponse(
+        education_json,
+        content_type="application/json"
+    )
 
 def create_education(request):
     form = EducationForm(request.POST or None)
@@ -47,6 +70,36 @@ def create_education(request):
     }
 
     return render(request, "education_form.html", context)
+
+def update_education(request, education_id):
+    education = get_object_or_404(Education, pk=education_id)
+
+    if request.method == "POST":
+        form = EducationForm(request.POST, instance=education)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Education updated successfully!")
+            return redirect("main:show_education")
+    else:
+        form = EducationForm(instance=education)
+
+    context = {
+        "name": "Mutia Muthmainnah",
+        "form": form,
+    }
+
+    return render(request, "education_form.html", context)
+
+def delete_education(request, education_id):
+    education = get_object_or_404(Education, pk=education_id)
+
+    if request.method == "POST":
+        education.delete()
+        messages.success(request, "Education deleted successfully!")
+        return redirect("main:show_education")
+
+    return redirect("main:show_education")
 
 def create_project(request):
     form = ProjectForm(request.POST or None)
