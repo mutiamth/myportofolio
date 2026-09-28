@@ -9,6 +9,7 @@ from main.views import (
     get_education_json,
     show_projects,
     create_project,
+    update_project,
     get_projects_json,
     delete_project,
     register,
@@ -41,6 +42,11 @@ urlpatterns = [
     ),
 
     path("projects/add/", create_project, name="create_project"),
+    path(
+        "projects/<int:project_id>/edit/",
+        update_project,
+        name="update_project",
+    ),
     path("projects/", show_projects, name="show_projects"),
     path("api/projects/", get_projects_json, name="get_projects_json"),
     path(

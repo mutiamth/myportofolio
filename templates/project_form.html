@@ -9,8 +9,13 @@
             <div class="section-title-row">
                 <span class="section-number">05</span>
                 <div>
-                    <p class="section-kicker">Add New Project</p>
-                    <h1>Add Project</h1>
+                    {% if is_edit %}
+                        <p class="section-kicker">Edit Project</p>
+                        <h1>Edit Project</h1>
+                    {% else %}
+                        p class="section-kicker">Add New Project</p>
+                        <h1>Add Project</h1>
+                    {% endif %}
                 </div>
             </div>
 
@@ -34,7 +39,13 @@
                 {% endfor %}
 
                 <div class="form-actions">
-                    <button type="submit">Add Project</button>
+                    <button type="submit">
+                        {% if is_edit %}
+                            Save Changes
+                        {% else %}
+                            Add Project
+                        {% endif %}
+                    </button>
 
                     <a href="{% url 'main:show_projects' %}">
                         Cancel
