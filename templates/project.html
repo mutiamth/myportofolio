@@ -14,9 +14,11 @@
                 </div>
             </div>
 
+            {% if user.is_superuser %}
             <a href="{% url 'main:create_project' %}" class="add-button">
                 + Add Project
             </a>
+            {% endif %}
 
             <form method="get"
                   action="{% url 'main:show_projects' %}"
@@ -67,15 +69,39 @@
                                 </a>
                             {% endif %}
 
+                            <form method="post"
+                                action="{% url 'main:toggle_star' project.id %}"
+                                class="star-form">
+
+                            {% csrf_token %}
+
+                            <button type="submit"
+                                class="button button-star{% if user in project.starred_by.all %} is-starred{% endif %}">
+                            <span aria-hidden="true">★</span>
+
+                            {% if user in project.starred_by.all %}
+                                Unstar
+                            {% else %}
+                                Star
+                            {% endif %}
+
+                            <span class="star-count">
+                                {{ project.starred_by.count }}
+                            </span>
+                        </button>
+                    </form>
+
+                        {% if user.is_superuser %}
                             <button type="button"
                                     onclick="document.getElementById('delete-modal-{{ project.id }}').showModal()">
                                 Delete
                             </button>
-
+                        {% endif %}
                         </div>
 
-                        {% include 'components/project_delete_modal.html' %}
-
+                        {% if user.is_superuser %}
+                            {% include 'components/project_delete_modal.html' %}
+                        {% endif %}
                     </article>
 
                 {% empty %}

@@ -11,6 +11,10 @@ from main.views import (
     create_project,
     get_projects_json,
     delete_project,
+    register,
+    login_user,
+    logout_user,
+    toggle_star,
 )
 
 app_name = "main"
@@ -44,4 +48,15 @@ urlpatterns = [
         delete_project,
         name="delete_project",
     ),
+
+    path(
+    "projects/<int:project_id>/star/",
+    toggle_star,
+    name="toggle_star",
+    ),
+
+    # Authentication
+    path("register/", register, name="register"),
+    path("login/", login_user, name="login"),
+    path("logout/", logout_user, name="logout"),
 ]
