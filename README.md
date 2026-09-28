@@ -34,6 +34,16 @@
 
    Setelah proses serialization selesai, data JSON dikembalikan oleh view menggunakan `HttpResponse` dengan `content_type = "application/json"`. Serialization diperlukan karena objek model Django tidak dapat langsung dikirim sebagai JSON. Proses ini mengubah data dan informasi dari objek Django menjadi format yang dapat dibaca dan digunakan oleh client.
 
+### Tugas 4
+
+Pada Tugas 4, saya menambahkan fitur authentication, session, cookies, dan authorization pada website portofolio. Pengguna dapat melakukan register, login, dan logout, serta informasi login terakhir disimpan menggunakan cookie.
+
+Pada bagian Projects, saya menambahkan fitur star sehingga pengguna yang sudah login dapat memberikan atau menghapus star pada project. Saya juga menerapkan pembatasan akses berdasarkan role pengguna. Guest dapat melihat project tetapi harus login untuk melakukan aksi yang membutuhkan akun. User biasa dapat melihat dan memberikan star, sedangkan superuser dapat menambahkan dan menghapus project.
+
+Selain itu, saya menambahkan role Editor menggunakan Django Group. Editor dapat melihat dan melakukan update pada project, tetapi tidak memiliki akses untuk menambahkan atau menghapus project. Pembatasan akses diterapkan pada view menggunakan pengecekan server-side, sementara tombol atau fitur yang tidak dapat digunakan juga disembunyikan pada template.
+
+Saya melakukan pengujian secara manual menggunakan development server dengan mencoba fitur menggunakan user biasa, Editor, dan superuser untuk memastikan setiap role memiliki akses yang sesuai.
+
 ### AI Disclosure
 Dalam pengerjaan tugas ini, saya menggunakan ChatGPT dan Claude sebagai alat bantu pembelajaran, pengembangan, dan debugging.
 
@@ -41,6 +51,9 @@ Dalam pengerjaan tugas ini, saya menggunakan ChatGPT dan Claude sebagai alat ban
 - Membantu memahami konsep Django ModelForm, CRUD, URL routing, JSON data delivery, serialization, dan deserialization.
 - Membantu mengimplementasikan dan melakukan debugging pada fitur Create, Update, Delete, serta JSON Data Delivery untuk bagian Education.
 - Membantu memeriksa struktur kode dan alur implementasi agar sesuai dengan requirement tugas.
+- Membantu memahami konsep authentication, session, cookies, authorization, Django Group, dan role-based access control pada Tugas 4.
+- Membantu mengimplementasikan dan melakukan debugging pada fitur login, register, logout, project starring, serta pembatasan akses berdasarkan role pengguna.
+- Membantu mengimplementasikan role Editor dan fitur update project, serta membantu menganalisis error yang ditemukan selama proses testing.
 
 **ChatGPT dan Claude** juga digunakan sebagai bantuan dalam pengembangan tampilan website, terutama untuk:
 - Membantu menyusun dan memperbaiki CSS, termasuk layout, card, button, responsive design, dan elemen visual lainnya.
@@ -48,4 +61,12 @@ Dalam pengerjaan tugas ini, saya menggunakan ChatGPT dan Claude sebagai alat ban
 
 Strategi prompting yang digunakan berupa pemberian konteks proyek, potongan kode, screenshot hasil implementasi, serta pertanyaan spesifik mengenai error atau perubahan yang ingin dilakukan. Output dari AI tidak digunakan secara langsung tanpa pemeriksaan. Saya menyesuaikan kode yang diberikan dengan struktur project dan melakukan pengujian secara manual.
 
-Implementasi akhir diuji dengan menjalankan aplikasi menggunakan `python manage.py runserver` serta menguji fitur Create, Read, Update, Delete, dan JSON Data Delivery pada bagian Education. Saya juga melakukan perubahan dan penyesuaian manual terhadap kode dan tampilan sesuai kebutuhan project.
+Implementasi akhir diuji dengan menjalankan aplikasi menggunakan `python manage.py runserver` serta melakukan pengujian terhadap fitur pada Tugas 1 hingga Tugas 4. Pada Tugas 4, saya menguji authentication, authorization, project starring, serta pembatasan akses untuk user biasa, Editor, dan superuser. Saya juga melakukan perubahan dan penyesuaian manual terhadap kode dan tampilan sesuai kebutuhan project.
+
+### AI Limitations and Manual Verification
+
+AI membantu saya dalam memahami requirement dan menyusun perubahan kode, tetapi hasil dari AI tidak selalu dapat langsung digunakan tanpa pemeriksaan. Pada Tugas 4, misalnya, variabel `is_editor` sempat digunakan pada template sebelum didefinisikan pada view `show_projects`, sehingga aplikasi menghasilkan `NameError`.
+
+Error tersebut ditemukan melalui pengujian manual pada development server. Saya kemudian memeriksa kembali alur data dari view ke template dan menambahkan definisi `is_editor` pada context sebelum melakukan pengujian ulang.
+
+Selain itu, konfigurasi Group Editor dan pemberian role kepada user dilakukan secara manual melalui Django Admin. Pengujian akses untuk user biasa, Editor, dan superuser juga dilakukan secara manual untuk memastikan pembatasan akses berjalan sesuai requirement.
