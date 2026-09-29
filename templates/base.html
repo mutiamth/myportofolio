@@ -18,6 +18,8 @@
 </head>
 
 <body>
+    <div class="cursor-glow"></div>
+
     <div class="page">
 
         <header class="site-header">
@@ -41,8 +43,8 @@
             </div>
         </header>
 
-        {% block content %}
-        {% endblock content %}
+        {% block content %}{% endblock content %}
+        {% include 'components/toast.html' %}
 
         <footer class="site-footer">
             <div class="container">
@@ -51,6 +53,10 @@
         </footer>
 
     </div>
+
+    <script src="{% static 'js/cinematic.js' %}"></script>
+    <script src="{% static 'js/cover-motion.js' %}"></script>
+
+    {% block scripts %}{% endblock scripts %}
 </body>
-{% block scripts %}{% endblock scripts %}
 </html>
